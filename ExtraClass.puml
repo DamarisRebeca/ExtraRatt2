@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/class-diagram/class-diagram
+
+
+class mijloc_de_trasnport {}
+class timp_sosire {}
+class statie {}
+class locatie_statie {}
+class ruta_optima {}
+class punct_plecare {}
+class alerta_trafic
+
+ruta_optima..punct_plecare
+mijloc_de_trasnport .. timp_sosire
+
+class permisiune_localizare_GPS
+class casuta_afisata
+class permite_acces
+class nu_permite_acces
+
+permisiune_localizare_GPS...casuta_afisata
+class casuta_afisata extends permite_acces,nu_permite_acces
+
+class initiaza_cerere
+class permisiune_sistem_operare
+class solicitare
+class serviciul_gps
+class acces_aplicatie
+
+initiaza_cerere...permisiune_sistem_operare
+solicitare ... acces_aplicatie
+
+ class permisiune
+ class accesa_dateleGPS
+ class limba
+ class camp
+ class sageata_in_jos
+ class limba_straina
+ class buton_continue
+ class harta_timsioara
+
+
+camp...sageata_in_jos
+permisiune...acces_dateleGPS
+buton_continue...harta_timisoara
+
+class coltul
+class buton_semn_exclamarii
+class alerte
+class trasee
+class oras
+class nr_notificari
+class fereastra_anunturi
+
+nr_notificari...fereastra_anunturi
+
+
+buton_semn_exclamarii...alerte
+
+
+
+
+
+
+
+
+
+
+@enduml
