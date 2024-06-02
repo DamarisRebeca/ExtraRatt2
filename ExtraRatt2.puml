@@ -7,16 +7,18 @@ actor utilizator
 actor GPSservice
 GPSservice<---(initiaza o cerere de permisiune GPS)
 GPSservice---> (inregistreazacoordonate GPS)
-utilizator ---->(traduce din engleza):alege limba straina
+utilizator ---->(traduce automat in limba selectata): selectarea limbii preferate
 utilizator ---> (afiseaza harta timisoarei): selecteaza butonul continue
-utilizator ---> (Afiseaza notificarile) : apasa butonu de notificari
+utilizator ---> (Afiseaza alerte/notificarile) : apasa butonul cu clopotel
+utilizator ---> ( afiseaza o casuta cu Buletin informativ, unde descrie informatia despre bilete) : apasa butonul cu informatii
 utilizator-->(cauta traseele disponibile): alege destinatie din lista
 :utilizator:-up--->( calculeaza traseele pe baza destinatiei):selecteaza destinatie
-utilizator -->(afiseaza liniile mijlocului de trasnport):selecteaza una din cele 3 casute
+utilizator -->(afiseaza liniile intr-o lista a mijlocului de trasnport):selecteaza una din cele 3 casute
 :utilizator:-up--->(afiseaza traseul pe harta cu linie ingrosata):selectat nr mijlocului de transport
+:utilizator:-right--->(mareste/apropie harta):apasa plus/minus
 :utilizator:-right---> (schimba directia sagetilor):selecteaza tur/retur
 :utilizator:-up-->(afiseaza programul din statie):selecteaza statie
-:utilizator:-right--->(mareste/apropie harta):apasa plus/minus
+
 
 
 

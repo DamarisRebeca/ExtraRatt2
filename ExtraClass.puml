@@ -14,18 +14,29 @@ ruta_optima..punct_plecare
 mijloc_de_trasnport .. timp_sosire
 
 class permisiune_localizare_GPS
-class casuta_afisata
-class permite_acces
-class nu_permite_acces
+class dialog{}
+class casuta_afisata_dialog{
+butonul_permite_si_nu_permite()
+textPermiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoatra.()
+}
+class buton_permite_acces{
 
-permisiune_localizare_GPS...casuta_afisata
-class casuta_afisata extends permite_acces,nu_permite_acces
+B()inregistreaza_datele_GPS
 
+}
+class buton_nu_permite_acces{}
+class intrebare
+class locatia
+
+permisiune_localizare_GPS...casuta_afisata_dialog
+casuta_afisata_dialog... buton_permite_acces
+casuta_afisata_dialog... buton_nu_permite_acces
 class initiaza_cerere
 class permisiune_sistem_operare
 class solicitare
 class serviciul_gps
 class acces_aplicatie
+
 
 initiaza_cerere...permisiune_sistem_operare
 solicitare ... acces_aplicatie
