@@ -1,74 +1,82 @@
 @startuml
 'https://plantuml.com/class-diagram/class-diagram
 
-
-class mijloc_de_trasnport {}
-class timp_sosire {}
-class statie {}
-class locatie_statie {}
-class ruta_optima {}
-class punct_plecare {}
-class alerta_trafic
-
-ruta_optima..punct_plecare
-mijloc_de_trasnport .. timp_sosire
-
 class permisiune_localizare_GPS
-class dialog{}
-class casuta_afisata_dialog{
+class fereastra_afisata_dialog{
 butonul_permite_si_nu_permite()
-textPermiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoatra.()
+textPermiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoatra()
 }
 class buton_permite_acces{
 
 B()inregistreaza_datele_GPS
 
 }
-class buton_nu_permite_acces{}
-class intrebare
-class locatia
+class buton_nu_permite_acces{
+nu_inregistreaza_datele_GPS()
+}
 
-permisiune_localizare_GPS...casuta_afisata_dialog
-casuta_afisata_dialog... buton_permite_acces
-casuta_afisata_dialog... buton_nu_permite_acces
-class initiaza_cerere
-class permisiune_sistem_operare
-class solicitare
-class serviciul_gps
-class acces_aplicatie
+permisiune_localizare_GPS...fereastra_afisata_dialog
+fereastra_afisata_dialog... buton_permite_acces
+fereastra_afisata_dialog... buton_nu_permite_acces
 
 
-initiaza_cerere...permisiune_sistem_operare
-solicitare ... acces_aplicatie
 
- class permisiune
- class accesa_dateleGPS
- class limba
- class camp
- class sageata_in_jos
- class limba_straina
- class buton_continue
+
+
+ class camp_dropdown_limba{
+ Lista_limbi_preferate
+ afiseaza_lista_limbi_preferate()
+ traduce()
+ }
+class fereastra_limba{
+
+camp_dropdown ()
+buton_continue()
+
+}
+ class buton_continue{
+
+ se_afiseaza_harta_TM()
+ }
+
+
  class harta_timsioara
 
 
-camp...sageata_in_jos
-permisiune...acces_dateleGPS
-buton_continue...harta_timisoara
+fereastra_limba...camp_dropdown_limba
+fereastra_limba...buton_continue
 
-class coltul
-class buton_semn_exclamarii
-class alerte
-class trasee
-class oras
-class nr_notificari
+
+
+
+
+
+
+class buton_clopotel
+class notificare
 class fereastra_anunturi
+class anunturi_incarcate
 
-nr_notificari...fereastra_anunturi
+buton_clopotel"1"..."*"notificare
+fereastra_anunturi...anunturi_incarcate
 
+class buton_i
 
-buton_semn_exclamarii...alerte
+class fereastra_buletin_informativ
 
+buton_i...fereastra_buletin_informativ
 
+class dropdown_lista_destinatie
+class lista_destinatie
+class casuta_autobuz
+class casuta_trolebuz
+class casuta_tramvai
+class fereastra_linii_trasnport
+
+dropdown_lista_destinatie... lista_destinatie
+casuta_autobuz... fereastra_linii_trasnport
+casuta_tramvai... fereastra_linii_trasnport
+casuta_trolebuz... fereastra_linii_trasnport
 
 
 
