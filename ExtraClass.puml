@@ -1,21 +1,26 @@
 @startuml
 'https://plantuml.com/class-diagram/class-diagram
 
-class permisiune_localizare_GPS
+
+
 class fereastra_afisata_dialog{
-butonul_permite_si_nu_permite()
-textPermiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoatra()
+butonul_permite_si_nu_permite
+textPermiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoatra
+permite_accesul_la_serviciile_GPS()
+nu_permite_acces_la_serviciile_gps()
+afiseaza_text_Permiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoastra()
 }
 class buton_permite_acces{
-
+Label
 B()inregistreaza_datele_GPS
 
 }
 class buton_nu_permite_acces{
+Label
 nu_inregistreaza_datele_GPS()
 }
 
-permisiune_localizare_GPS...fereastra_afisata_dialog
+
 fereastra_afisata_dialog... buton_permite_acces
 fereastra_afisata_dialog... buton_nu_permite_acces
 
@@ -30,56 +35,138 @@ fereastra_afisata_dialog... buton_nu_permite_acces
  }
 class fereastra_limba{
 
-camp_dropdown ()
-buton_continue()
+camp_dropdown
+buton_continue
+afiseaza_lista_limbi_preferate()
+se_afiseaza_harta_TM()
 
 }
  class buton_continue{
-
+Label
  se_afiseaza_harta_TM()
  }
 
+class harta_timisoara {
+statie
+sigla_autobuz
+()afiseaza_fereastra_program_statiei
+}
+ class buton_continue
+ class fereastra_harta_timisoara{
+ buton_clopotel
+ buton_informatii
+ dropdown_lista_destinatie
+ harta_timisoara
+ afiseaza_fereastra_pentru_notificari()
+ afiseaza_fereastra_buletin_informativ()
+ afiseaza_lista_destinatii()
+ }
 
- class harta_timsioara
-
-
+fereastra_harta_timisoara... buton_clopotel
+fereastra_harta_timisoara... buton_i
+fereastra_harta_timisoara... dropdown_lista_destinatie
 fereastra_limba...camp_dropdown_limba
 fereastra_limba...buton_continue
+fereastra_harta_timisoara...harta_timisoara
+harta_timisoara...program_statie
 
 
 
 
 
-
-
-class buton_clopotel
+class buton_clopotel {
+Label
+afiseaza_numarul_notiticarilor()
+deschide_fereastra_anunturi()
+}
 class notificare
-class fereastra_anunturi
-class anunturi_incarcate
 
-buton_clopotel"1"..."*"notificare
-fereastra_anunturi...anunturi_incarcate
+class fereastra_anunturi {
+label
+lista_notificari
+Afiseaza_notificarile_text()
 
-class buton_i
+}
 
-class fereastra_buletin_informativ
+
+buton_clopotel"1"..."*"fereastra_anunturi
+
+
+class buton_i{
+Label
+()deschide_fereastra_buletin_informativ
+}
+
+class fereastra_buletin_informativ {
+Label
+()afiseaza_continut_informativ_achizitionare_bilet
+}
 
 buton_i...fereastra_buletin_informativ
 
-class dropdown_lista_destinatie
-class lista_destinatie
-class casuta_autobuz
-class casuta_trolebuz
-class casuta_tramvai
-class fereastra_linii_trasnport
+class dropdown_lista_destinatie {
+Label
+lista_destinatii
+()afiseaza_lista_destinatii
+()calculeaza_toate_traseele_posibile
+}
+
+
+class lista_destinatie{
+lista_destinatii
+calculeaza_toate_traseele_posibile()
+
+}
+class buton_autobuz{
+
+liebel
+()afiseaza_fereastra_linii_trasnport
+}
+class buton_trolebuz {
+
+liebel
+()afiseaza_fereastra_linii_trasnport
+}
+class buton_tramvai{
+
+liebel
+()afiseaza_fereastra_linii_trasnport
+}
+
+class fereastra_linii_trasnport{
+Lista_linii_trasnport
+()evidentiaza_traseul_pe_harta
+}
 
 dropdown_lista_destinatie... lista_destinatie
-casuta_autobuz... fereastra_linii_trasnport
-casuta_tramvai... fereastra_linii_trasnport
-casuta_trolebuz... fereastra_linii_trasnport
+buton_autobuz... fereastra_linii_trasnport
+buton_tramvai... fereastra_linii_trasnport
+buton_trolebuz... fereastra_linii_trasnport
 
+class linie_ingrosata{
+sigla_autobuz
+statie
+sageti_pe_linie
+()afiseaza_live_locatia_autobuzului
+()afiseaza_fereastra_program_statiei
+()sagetile_arata_sensul_traseului
+}
+class sigla_autobuz
+class buton_minus
+class buton_plus
+class buton_tur
+class buton_retur
+class sageti_pe_linie
+class statie
+class program_statie{
+lista_program_statie
+adresa_statie
+lista_autobuzelor_ce_opresc
+()afiseaza_lista_program_statie
+()afiseaza_lista_autobuze_ce_opresc
+}
 
-
+fereastra_linii_trasnport ... linie_ingrosata
 
 
 
