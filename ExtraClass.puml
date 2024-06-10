@@ -57,9 +57,16 @@ sigla_autobuz
  buton_informatii
  dropdown_lista_destinatie
  harta_timisoara
+ buton_tur_retur
+ buton_plus_minus
+ butoan_vehicol
  afiseaza_fereastra_pentru_notificari()
  afiseaza_fereastra_buletin_informativ()
  afiseaza_lista_destinatii()
+ sagetile_arata_sensul_traseului()
+ distantioaza_si_apropie()
+ afiseaza_lista_linii_trasnport()
+
  }
 
 fereastra_harta_timisoara... buton_clopotel
@@ -70,8 +77,13 @@ fereastra_limba...buton_continue
 fereastra_harta_timisoara...harta_timisoara
 harta_timisoara...program_statie
 
-
-
+class buton_vehicol{
+liebel
+()afiseaza_fereastra_linii_trasnport
+}
+buton_vehicol <|-- buton_autobuz
+buton_vehicol <|-- buton_trolebuz
+buton_vehicol <|-- buton_tramvai
 
 
 class buton_clopotel {
