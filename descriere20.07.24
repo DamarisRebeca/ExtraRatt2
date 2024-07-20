@@ -1,0 +1,25 @@
+Aplicatie transport ExtraRATT
+     Este o aplicatie in care utilizatorul poate vedea in timp real  unde se afla mijloacele de transport , timpul de sosire al mijlocului de transport in statii , locatiile  statiilor apropiate , rutele optime si alertele din trafic.
+•	Permisiune coordonate GPS
+ Cand utilizatorul deschide aplicatia, prima data va cere permisiunea pentru localizarea GPS  printr-o  fereastra  de dialog afisata pe ecran cu doua butoane : permite access / nu permite access. Pe fereastra    ca si titlu scrie intrebarea : “Permiteti ca aplicatia “ ExtraRatt2 “ sa utilizeze locatia dumneavoastra ? “ si sub,  primul camp  va scrie pe buton “Permite access” si pe al doilea buton “Nu permite access “.
+Aplicatia trimite o cerere de permisiune catre sistemul de operare al dispozitivului. Aceasta este o solicitare catre utilizator de a permite sau refuza accesul aplicatiei la servicile GPS.
+Daca utilizatorul selecteaza “permite access” , aplicatia primeste permisiunea de a accesa datele GPS ale dispozitivului. Sistemul de operare inregistreaza decizia utilizatorului. Daca permisiunea este acordata, aceasta va fi retinuta pentru utilizarile viitoare ale aplicatiei, pana cand utilizatorul o modifica din setarile dispozitivului. Prin utilizarea coordodatelor gps este vizibil optiunea de a vedea locatia curenta a utilizatorului .  Daca utilizatorul selecteaza “ nu permite access “ aplicatia nu primeste permisiunea de a accesa datele GPS .
+•	Selectare limba preferata
+O alta fereastra afisata pe ecran este cand  utilizatorul  poate selecta   limba preferata/nativa dintr-o lista de limbi disponibile.  In casuta  este un camp  dropdown list si  utilizatorul cand  apasa pe camp  se afiseaza celelalte limbi straine insirate  de sus in jos. Dupa  selectarea limbii, toate textele si mesajele afisate in aplicatie vor fi traduse automat in limba selectata . Sub campul dropdwn list este un buton ce scrie pe el “Continue “ .  Utilizatorul apasa pe butonul continue de mai jos si se afiseaza pagina principala  si cu harta timisoarei.
+•	Buton notificari
+    In coltul din stanga se afla un buton cu un clopotel  unde aplicatia   trasnmite alerte/notificari  in cazul in care anumite trasee sunt blocate sau anumite intamplari neprevazute in oras /trafic.La buton va aparea numarul notificarilor si utilizatorul cand apasa se va deschide o fereastra cu anunturile incarcate .
+•	Buton informatii
+In dreapta clopotelului se afla un al doilea buton cu un “ i “ ce semnifica “informatii “ . Pe buton cand este selectat se afiseasa o fereastra cu titlul “ Buletin informativ “ , unde este descrisa informatia despre biletele de transport , locatia unde se pot achizitiona  si altele
+
+
+•	Campdreopdown
+In dreapta  butonului de informatii  se afla  un camp dropdown list  unde  utilizatorul daca a dat click pe permis access coordonatelor GPS se afiseaza  cele mai apropiate statii  cu numele statiilor si pe harta se evidentiaza  locatia lui si  statiile detectate apropiate. Daca a dat click pe nu permite acces coordate GPS se vor afisa in campul dropdown list toate statiile  si pe harta vor fi evidentiate toate statiile si nu va putea vedea locatia lui curenta. Cand selecteaza o statie din dropdown list se va deschide o fereastra cu toate liniile de autobuz ce opresc la statia respective . Cand este selectata o linie de transport se afiseaza programul liniei respective printr o alta fereastra .
+
+•	Selectarea tipului de transport-autobuz/firobuz/tramvai
+Sub harta  in dreapta jos se gasesc trei butoane unde fiecare reprezinta autobuz, trolebuz si tramvai.
+   Utilizatorul selecteaza una din ele si se deschide o fereastra cu  toate liniile de transport a vehicolului ales. Linille  de transport sunt afisate intr-o lista verticala unde in stanga scrie numarul autobuzului si  spre dreapta traseul cu strada dintr-un capat in cealalat. Dupa ce a selectat numarul mijlocului de trasnport aplicatia ii afiseaza traseul cu linie ingrosata pe harta . Pe linie apare sigla cu un autobuz, si utilizatorul poate vizualiza in timp real locatia autobuzului . Pentru localizarea in timp real a autobuzului, va aparea pe linia ingrosata o sigla in forma de autobuz
+•	Butoane apropiere-distantiere
+In stanga jos  sunt doua butoane cu plus cu minus unde utilizatorul apropie cand apasa pe plus si distantiaza cand apasa pe minus .
+•	Butoane tur/retur
+Si intre butoanele de distantiere si butoanele cu mijloacele de transport se gasesc doua butoane ce scrie pe ele TUR/RETUR. La selectarea unuia dintre ele se schimba pe harta sensul traseului pentru mijlocul de transport ales . Sensul traseului va fi marcat cu mici sageti pe liniile ingrosate pe harta .
+
