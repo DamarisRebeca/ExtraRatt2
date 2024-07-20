@@ -12,7 +12,7 @@ afiseaza_text_Permiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoastra()
 }
 class buton_permite_acces{
 Label
-B()inregistreaza_datele_GPS
+inregistreaza_datele_GPS()
 
 }
 class buton_nu_permite_acces{
@@ -21,8 +21,8 @@ nu_inregistreaza_datele_GPS()
 }
 
 
-fereastra_afisata_dialog... buton_permite_acces
-fereastra_afisata_dialog... buton_nu_permite_acces
+fereastra_afisata_dialog *--- buton_permite_acces
+fereastra_afisata_dialog*--- buton_nu_permite_acces
 
 
 
@@ -49,47 +49,40 @@ Label
 class harta_timisoara {
 statie
 sigla_autobuz
-()afiseaza_fereastra_program_statiei
+afiseaza_fereastra_program_statiei()
 }
  class buton_continue
  class fereastra_harta_timisoara{
  buton_clopotel
  buton_informatii
- dropdown_lista_destinatie
+ dropdown_lista_statie
  harta_timisoara
  buton_tur_retur
  buton_plus_minus
  butoan_vehicol
  afiseaza_fereastra_pentru_notificari()
  afiseaza_fereastra_buletin_informativ()
- afiseaza_lista_destinatii()
+ afiseaza_lista_statii()
  sagetile_arata_sensul_traseului()
  distantioaza_si_apropie()
  afiseaza_lista_linii_trasnport()
 
  }
 
-fereastra_harta_timisoara... buton_clopotel
-fereastra_harta_timisoara... buton_i
-fereastra_harta_timisoara... dropdown_lista_destinatie
-fereastra_limba...camp_dropdown_limba
-fereastra_limba...buton_continue
-fereastra_harta_timisoara...harta_timisoara
-harta_timisoara...program_statie
-
-class buton_vehicol{
-liebel
-()afiseaza_fereastra_linii_trasnport
-}
-buton_vehicol <|-- buton_autobuz
-buton_vehicol <|-- buton_trolebuz
-buton_vehicol <|-- buton_tramvai
-
+fereastra_harta_timisoara "1" *--- buton_clopotel
+fereastra_harta_timisoara *--- buton_i
+fereastra_harta_timisoara *--- dropdown_lista_statie
+fereastra_limba  "1" o--- "9" camp_dropdown_limba
+fereastra_limba*--- buton_continue
+fereastra_harta_timisoara *---harta_timisoara
+harta_timisoara *--- program_statie
+harta_timisoara *--- statie
+program_statie - statie :<click
 
 class buton_clopotel {
 Label
 afiseaza_numarul_notiticarilor()
-deschide_fereastra_anunturi()
+click_deschide_fereastra_anunturi()
 }
 class notificare
 
@@ -101,87 +94,100 @@ Afiseaza_notificarile_text()
 }
 
 
-buton_clopotel"1"..."*"fereastra_anunturi
+buton_clopotel"1"*---"*"fereastra_anunturi
 
 
 class buton_i{
 Label
-()deschide_fereastra_buletin_informativ
+deschide_fereastra_buletin_informativ()
 }
 
 class fereastra_buletin_informativ {
 Label
-()afiseaza_continut_informativ_achizitionare_bilet
+afiseaza_continut_informativ_achizitionare_bilet()
 }
 
-buton_i...fereastra_buletin_informativ
+buton_i*---fereastra_buletin_informativ
 
-class dropdown_lista_destinatie {
+class dropdown_lista_statie{
 Label
-lista_destinatii
-()afiseaza_lista_destinatii
-()calculeaza_toate_traseele_posibile
+lista_statie
+click_afiseaza_lista_statii()
 }
 
 
-class lista_destinatie{
-lista_destinatii
-calculeaza_toate_traseele_posibile()
+class lista_linii_trasnport{
+lista_linii_trasnport
+()
 
 }
 class buton_autobuz{
 
 liebel
-()afiseaza_fereastra_linii_trasnport
+afiseaza_fereastra_linii_trasnport()
 }
 class buton_trolebuz {
-
 liebel
-()afiseaza_fereastra_linii_trasnport
+afiseaza_fereastra_linii_trasnport()
 }
 class buton_tramvai{
 
 liebel
-()afiseaza_fereastra_linii_trasnport
+afiseaza_fereastra_linii_trasnport()
 }
 
 class fereastra_linii_trasnport{
 Lista_linii_trasnport
-()evidentiaza_traseul_pe_harta
+evidentiaza_traseul_pe_harta()
 }
 
-dropdown_lista_destinatie... lista_destinatie
-buton_autobuz... fereastra_linii_trasnport
-buton_tramvai... fereastra_linii_trasnport
-buton_trolebuz... fereastra_linii_trasnport
+dropdown_lista_statie "1" o--- "*"lista_linii_trasnport
+buton_autobuz *--- fereastra_linii_trasnport
+buton_tramvai *--- fereastra_linii_trasnport
+buton_trolebuz *--- fereastra_linii_trasnport
 
 class linie_ingrosata{
 sigla_autobuz
 statie
 sageti_pe_linie
-()afiseaza_live_locatia_autobuzului
-()afiseaza_fereastra_program_statiei
-()sagetile_arata_sensul_traseului
+afiseaza_live_locatia_autobuzului()
+afiseaza_fereastra_program_statiei()
+sagetile_arata_sensul_traseului()
 }
-class sigla_autobuz
+
 class buton_minus
 class buton_plus
 class buton_tur
 class buton_retur
 class sageti_pe_linie
-class statie
+class statie {
+
+nr_autobuze
+afiseaza_care_autobuze_opresc()
+trasee
+afiseaza_denuirea_traseeleelor()
+program_statie
+
+
+}
 class program_statie{
 lista_program_statie
 adresa_statie
 lista_autobuzelor_ce_opresc
-()afiseaza_lista_program_statie
-()afiseaza_lista_autobuze_ce_opresc
+afiseaza_lista_program_statie()
+afiseaza_lista_autobuze_ce_opresc()
 }
 
-fereastra_linii_trasnport ... linie_ingrosata
-
-
-
+fereastra_linii_trasnport --- linie_ingrosata
+buton_minus *---buton_plus
+buton_tur *---buton_retur
+sageti_pe_linie---buton_tur
+class traseu {
+denumire_traseu
+linie_ingrosata
+afiseaza_linie_ingrosata_harta()
+}
+traseu--- linie_ingrosata
 
 
 @enduml
