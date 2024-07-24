@@ -1,5 +1,8 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+class fereastra_afisata_dialog {
 
+
+}
 @enduml
