@@ -9,21 +9,41 @@ actor GPSservice
 GPSservice<--(initiaza o cerere de permisiune GPS)
 GPSservice--> (inregistreaza coordonate GPS)
 (inregistreaza coordonate GPS)--|> utilizator
-utilizator -->(traduce automat in limba selectata): selectarea limbii preferate
-utilizator --> (afiseaza pagina principala): selecteaza butonul continue
+utilizator -->(afiseaza o fereastra cu titlul "Subconstruction system"): selectarea limbii engleze
+:utilizator: --> (initiaza cerere harta): selecteaza butonul continue
+actor APIgoogleMap
+APIgoogleMap<---(initiaza cerere harta)
+APIgoogleMap-->(inregistreaza  harta)
+(inregistreaza  harta)---|>(afiseaza pagina principala)
 (nu inregistreaza coordonatele GPS)---|>(afiseaza pagina principala):nu afiseaza coordonatele gps
 (inregistreaza coordonate GPS)---|>(afiseaza pagina principala):afiseaza coordonate GPS
-utilizator --> (Afiseaza alerte/notificarile) : apasa butonul cu clopotel
-utilizator --> ( afiseaza o casuta cu Buletin informativ, unde descrie informatia despre bilete) : apasa butonul cu informatii
-utilizator-->(afiseaza statiile detectate dupa locatia utilizatorului): alege o statie din cele detectate apropiate
-:utilizator:-up-->( afiseaza toate statiile ):selecteaza nu permite acces coordonate GPS
-:utilizator:-up-->(afiseaza liniile  mijloacele de trasnport ce opresc in statia respectiva):selecteaza statie din dropdown list
-:utilizator:-up-->(afiseaza program linie de trasnport ales):selecteaza linie mijloc de trasnport
-utilizator --->(afiseaza programul pentru mijlocul de trasnport):selecteaza un tip de trasnport autobuz/firobuz/tramvai
 
-:utilizator:-up-->(afiseaza traseul pe harta cu linie ingrosata):selectat nr mijlocului de transport
-:utilizator:-right-->(mareste/apropie harta):apasa plus/minus
-:utilizator:-right--> (schimba directia sagetilor):selecteaza tur/retur
+utilizator --> (initiaza cerere notificari) : apasa butonul cu clopotel
+actor APItrafic
+
+APItrafic<---(initiaza cerere notificari)
+APItrafic-->(inregistreaza informatii trafic)
+(inregistreaza informatii trafic)---|>(Afiseaza alerte/notificarile)
+
+utilizator --> ( afiseaza o casuta cu Buletin informativ, unde descrie informatia despre bilete) : apasa butonul cu informatii
+
+utilizator-->(initiaza cerere program autobuze): selecteaza camp drop-down list
+actor APItransport
+APItrasnport<---(initiaza cerere program autobuze)
+APItransport-->(inregistreaza programul live pt autobuze)
+(inregistreaza programul live pt autobuze)--|>(afiseaza liniile  mijloacele de trasnport ce opresc in statia respectiva si programul)
+(inregistreaza programul live pt autobuze)--|>(afiseaza programul live al autobului pt acea linie in toate staiile de pe traseu si afiseaza pe harta cu linie ingrosata traseul)
+
+:utilizator:-up-->( afiseaza toate statiile ):selecteaza nu permite acces coordonate GPS
+:utilizator:-up-->(afiseaza liniile  mijloacele de trasnport ce opresc in statia respectiva si programul):selecteaza statie din dropdown list
+:utilizator:-up-->(afiseaza programul live al autobului pt acea linie in toate staiile de pe traseu si afiseaza pe harta cu linie ingrosata traseul):selecteaza o linie de autobuz
+
+
+
+
+utilizator --->(afiseaza programul pentru mijlocul de trasnport):selecteaza un tip de trasnport autobuz/firobuz/tramvai
+:utilizator:--->(mareste/apropie harta):apasa plus/minus
+:utilizator:--> (schimba directia sagetilor):selecteaza tour/retour
 
 
 
