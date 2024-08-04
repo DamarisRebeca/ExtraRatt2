@@ -1,8 +1,185 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class fereastra_afisata_dialog {
+class fereastra_autorizare_locatie_GPS {
+
+buton_permite
+buton_nu_permite
+text_Permiteti_ca_aplicatia_sa_utilizeze_locatia_dumneavoastra
+gestioneaza_actiunea_cu_permite_accesul_la_serviciul_GPS()
+gestioneaza_actiunea_cu_nu_permite_acces_la_serviciul_GPS()
+afiseaza_text_informativ()
+}
+
+class serviciile_GPS{
+
+locatia_curenta_obtinuta_prin_GPS
+incepe_obtinerea_locatiei_GPS()
+opreste_obtinerea-locatiei_GPS()
+}
+
+fereastra_autorizare_locatie_GPS - serviciile_GPS :> cerere
+
+class selectie_limba_preferata{
+
+drop_down_list
+text_limba_romana
+text_limba_engleza
+Buton_pentru_Continuare
+afiseaza_text_romana()
+afiseaza_text_engleza()
+afiseaza_pagina_principala
+}
+
+
+class fereastra_lucru_engleza{
+Text_informativ_cu_"subconstruction system"
+desen_simbolic
+buton_"Next"
+afiseaza_text_informativ()
+inchide_fereastra_lucru_engleza()
+}
+selectie_limba_preferata ---* fereastra_lucru_engleza
+selectie_limba_preferata ---* Pagina_principala
+
+class APIgoogleMap{
+harta_obtinuta_prin_googleMap
+incepe_obtinerea_hartii()
+}
+note right: Control
+selectie_limba_preferata - APIgoogleMap :> cerere
+
+
+class Pagina_principala{
+buton_notificari
+buton_informti
+drop_down_list_statie
+harta_timisoara
+buton_apropiere_distantiere
+buton_tur_retur
+autobuz_program
+trolebuz_program
+tramvai_program
+afiseaza_fereastra_notificari()
+afiseaza_fereastra_informatii()
+afiseaza_stiile()
+afiseaza_traseul_si_statie()
+apropie_sau_distantiaza_harta()
+afiseaza_sensul_traseului()
+afiseaza_program_intreg_autobuz()
+afiseaza_program_intreg_trolebuz()
+afiseaza_program_intreg_tramvai()
 
 
 }
+class buton_notificari{
+icon_afisat_pe_buton
+Nr_de_notificari_necitite
+actiunea_click_apasare
+afiseaza_numar_notificari()
+afiseaza_fereastra_notificari()
+afiseaza_numarul_necitite()
+}
+
+note left:Entity
+note right of buton_notificari::icon_afisat_pe_buton
+ Bondary
+ end note
+
+class fereastra_notificari{
+Label
+lista_notificari
+afiseaza_notificarile_text()
+}
+buton_notificari"1"--*"*" fereastra_notificari
+
+class APItrafic{
+notificari_obtinute_prin_API
+incepe_obtinerea_notificarilor()
+}
+buton_notificari - APItrafic:> cerere
+
+class buton_informti{
+icon_afisat_pe_buton
+afiseaza_fereastra_informatii()
+}
+note left: Entyti
+class fereastra_informatii{
+Label
+afiseaza_informatii()
+}
+buton_informti--* fereastra_informatii
+note left: Entyti
+
+class drop_down_list_statie{
+lista_statii_disponibile_apropiate
+actiunea_click_apasare
+sageata_ce_indica_dropdownl_inchis_deschis
+afiseaza_fereastra_linii_statie_program()
+sageata_in_jos_inchis()
+sageata_in_sus_deschis()
+}
+class APItrasnport{
+program_obtinut_prin_API
+incepe_obtinerea_programului()
+}
+drop_down_list_statie - APItrasnport:> cerere
+note right:control
+
+class fereastra_linii_statie_program{
+lista_linii_transport_pt_statia_selectata
+program_ora_sosire_fiecare_linie
+afiseaza_lista_linii_trasnport()
+afiseaza_ora_sosire()
+}
+drop_down_list_statie--* fereastra_linii_statie_program
+
+class fereastra_program_linie_pt_tot_traseul{
+Lista_statii_pt_linia_selectata_tot_traseul
+program_ora_sosire_fiecare_statie
+
+afiseaza_lista_statii_tot_traseul()
+afiseaza_program_sosire_tot_traseul()
+}
+fereastra_linii_statie_program--*fereastra_program_linie_pt_tot_traseul
+fereastra_linii_statie_program--*harta_timisoara
+class harta_timisoara{
+traseu
+autobuze
+trolebuze
+tramvai
+afiseaza_traseul()
+afiseaza_autobuz_pe_traseu()
+afiseaza_tramvai_pe_traseu()
+afiseaza_trolebuz_pe_traseu()
+}
+
+class program_intreg_linie_trasnport3B{
+Lista_cu_liniile_de_trasport_pt_trolebuz
+Lista_cu_liniile_de_trasport_pt_tramvai
+Lista_cu_liniile_de_trasport_pt_autobuz
+afiseaza_fereastra_linie_program_()
+}
+class trolebuz_program3B{
+
+}
+class tramvai_program3B{}
+class autobuz_program3B{}
+
+
+class buton_tur_retur{}
+
+class buton_apropiere_distantiere{}
+
+
+class statie{}
+class traseu {}
+
+
+
+
+
+
+
+
 @enduml
