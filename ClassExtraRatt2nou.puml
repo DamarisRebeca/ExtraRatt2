@@ -12,8 +12,9 @@ afiseaza_text_informativ()
 }
 
 class serviciile_GPS{
-
+cache
 locatia_curenta_obtinuta_prin_GPS
+inregistreaza_date_in_cache()
 incepe_obtinerea_locatiei_GPS()
 opreste_obtinerea-locatiei_GPS()
 }
@@ -28,7 +29,7 @@ text_limba_engleza
 Buton_pentru_Continuare
 afiseaza_text_romana()
 afiseaza_text_engleza()
-afiseaza_pagina_principala
+afiseaza_pagina_principala()
 }
 
 
@@ -44,7 +45,9 @@ selectie_limba_preferata ---* Pagina_principala
 
 class APIgoogleMap{
 harta_obtinuta_prin_googleMap
+cache
 incepe_obtinerea_hartii()
+inregistreaza_date_in_cache()
 }
 note right: Control
 selectie_limba_preferata - APIgoogleMap :> cerere
@@ -95,7 +98,9 @@ buton_notificari"1"--*"*" fereastra_notificari
 
 class APItrafic{
 notificari_obtinute_prin_API
+cache
 incepe_obtinerea_notificarilor()
+inregistreaza_date_in_cache()
 }
 buton_notificari - APItrafic:> cerere
 
@@ -114,71 +119,119 @@ note left: Entyti
 class drop_down_list_statie{
 lista_statii_disponibile_apropiate
 actiunea_click_apasare
-sageata_ce_indica_dropdownl_inchis_deschis
-afiseaza_fereastra_linii_statie_program()
+sageata_ce_indica_dropdown_inchis_deschis
+afiseaza_fereastra_selectie_linie_autobuz()
 sageata_in_jos_inchis()
 sageata_in_sus_deschis()
 }
 class APItrasnport{
 program_obtinut_prin_API
+cache
 incepe_obtinerea_programului()
+inregistreaza_date_in_cache()
 }
 drop_down_list_statie - APItrasnport:> cerere
 note right:control
 
-class fereastra_linii_statie_program{
-lista_linii_transport_pt_statia_selectata
+class fereastra_selectie_linie_autobuz{
+lista_linii_autobuz_pt_statia_selectata
 program_ora_sosire_fiecare_linie
 afiseaza_lista_linii_trasnport()
 afiseaza_ora_sosire()
+afiseaza_fereastra_program_linie_tot_traseul()
+evidentiaza_traseul_pe_harta()
 }
-drop_down_list_statie--* fereastra_linii_statie_program
+drop_down_list_statie--* fereastra_selectie_linie_autobuz
 
-class fereastra_program_linie_pt_tot_traseul{
+class program_linie_tot_traseul{
 Lista_statii_pt_linia_selectata_tot_traseul
 program_ora_sosire_fiecare_statie
 
 afiseaza_lista_statii_tot_traseul()
 afiseaza_program_sosire_tot_traseul()
 }
-fereastra_linii_statie_program--*fereastra_program_linie_pt_tot_traseul
-fereastra_linii_statie_program--*harta_timisoara
+fereastra_selectie_linie_autobuz--*program_linie_tot_traseul
+fereastra_selectie_linie_autobuz--*harta_timisoara
 class harta_timisoara{
 traseu
-autobuze
-trolebuze
-tramvai
+autobuz
+statie
 afiseaza_traseul()
 afiseaza_autobuz_pe_traseu()
-afiseaza_tramvai_pe_traseu()
-afiseaza_trolebuz_pe_traseu()
+afiseaza_stiile()
+
 }
 
 class program_intreg_linie_trasnport3B{
-Lista_cu_liniile_de_trasport_pt_trolebuz
-Lista_cu_liniile_de_trasport_pt_tramvai
-Lista_cu_liniile_de_trasport_pt_autobuz
-afiseaza_fereastra_linie_program_()
+program_toata_saptamana_trolebuz
+program_toata_saptamana_tramvai
+program_toata_saptamana_autobuz
+afiseaza_fereastra_trolebuz_program()
+afiseaza_fereastra_tramvai_program()
+afiseaza_fereastra_autobuz_program()
 }
 class trolebuz_program3B{
-
+icon_afisat_pe_buton
+lista_linii_trolebuz
+afiseaza_lista_toate_liniile_de_trolebuz()
 }
-class tramvai_program3B{}
-class autobuz_program3B{}
+class tramvai_program3B{
+icon_afisat_pe_buton
+lista_linii_tramvai
+afiseaza_lista_toate_liniile_de_tramvai()
+}
+class autobuz_program3B{
+icon_afisat_pe_buton
+lista_linii_autobuz
+afiseaza_lista_toate_liniile_de_autobuz()
+}
+
+trolebuz_program3B--*program_intreg_linie_trasnport3B
+tramvai_program3B--*program_intreg_linie_trasnport3B
+autobuz_program3B--*program_intreg_linie_trasnport3B
+
+class buton_tur_retur{
+icon_sageata_tur
+icon_sageata_retur
+arata_sensul_tur()
+arata_sensul_retur()
+}
+
+class buton_apropiere_distantiere{
+icon_cu_plus
+icon_cu_minus
+apropie_de_harta()
+distantiaza_de_harta()
+}
 
 
-class buton_tur_retur{}
+class statie{
+nr_GPS
+numar_autobuze
+adresa
+afiseaza_nr_autobuze()
+afiseaza_adresa()
+}
+class traseu {
+nume_traseu
+lista_toate_statiile_de_pe_traseu
+coordonate_GPS_autobuz
+evidentiaza_traseu_desenat_pe_harta()
+evidentiaza_staiile_pe_traseu()
+evidentiaza_live_locatia_autobuzlui()
+}
+class autobuz{
+icon_autobuz
+cordonate-autobuz
+evidentiaza_live_locatia_autobuzului()
+}
 
-class buton_apropiere_distantiere{}
-
-
-class statie{}
-class traseu {}
-
-
-
-
-
+harta_timisoara--*traseu
+harta_timisoara--*statie
+harta_timisoara--*autobuz
+harta_timisoara--*buton_tur_retur
+traseu-* buton_tur_retur
+harta_timisoara--*buton_apropiere_distantiere
 
 
 
